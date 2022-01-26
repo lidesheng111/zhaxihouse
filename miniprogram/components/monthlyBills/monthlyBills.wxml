@@ -1,0 +1,26 @@
+<view class="margin_top bg_gray">
+  <view class="grid table_head_color">
+    <view>月度</view>
+    <view>水费</view>
+    <view>电费</view>
+    <view>卫生费</view>
+    <view>租金</view>
+    <view>状态</view>
+    <view>操作</view>
+  </view>
+
+  <block wx:for="{{bills}}" wx:key="index">
+    <view class="table_content_color grid {{item.allPaid?'faded':''}}" id="{{index}}" bindtap="gotoDetails">
+      <view class="dates-cell" scroll-x="true">
+        <view>{{item.from}}至</view>
+        <view>{{item.till}}</view>
+      </view>
+      <view>{{item.wBill}}</view>
+      <view>{{item.eBill}}</view>
+      <view>{{item.gBill}}</view>
+      <view>{{item.rental}}</view>
+      <view class="{{item.allPaid?'':'warn'}}">{{item.allPaid?'已付':'欠租'}}</view>
+      <view class="B-nameTel">{{item.allPaid ? '详情':'待支付'}}</view>
+    </view>
+  </block>
+</view>

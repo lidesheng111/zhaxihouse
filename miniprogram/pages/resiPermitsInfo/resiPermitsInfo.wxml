@@ -1,0 +1,35 @@
+<view>
+  <l-tabs active-key="{{activeKey}}" active-color="#2c6e49">
+    <l-tabpanel wx:if="{{_name}}" tab="当前信息" key="0" slot="0">
+      <view class="margin" >
+        <l-list title="{{_name}}" desc="{{_idNumber}}" tag-content="{{roomNo}}房" right-desc="有效期：{{_expiredIn}}" is-link="{{false}}" />
+      </view>
+      <view class="magin_top center">
+        <l-button bg-color="#97a97c" class="margin" bindtap="doEdit">修改</l-button>
+        <l-button bg-color="#97a97c" class="margin" bindtap="delete">删除</l-button>
+      </view>
+    </l-tabpanel>
+
+    <l-tabpanel wx:if="{{_name}}" tab="更改" key="1" slot="1">
+      <l-input label="姓名" value="{{_name}}" bindlinblur="editName" />
+      <l-input label="身份证号" value="{{_idNumber}}" bindlinblur="editIdNumber" />
+      <!-- <l-input label="房间号" value="{{_roomNo}}" bindlinblur="editRoomNo" /> -->
+      <_calendar label="有效期至" placeholder="有效期截止" value="{{_expiredIn}}" bindlinblur="editExpiredIn" />
+
+      <view class="margin center">
+        <l-button bg-color="#97a97c" bindtap="submitEdit">提交</l-button>
+      </view>
+    </l-tabpanel>
+
+    <l-tabpanel tab="新增" key="2" slot="2">
+      <l-input label="姓名" placeholder="姓名" bindlinblur="addName" />
+      <l-input label="身份证号" placeholder="身份证号" bindlinblur="addIdNumber" />
+      <!-- <l-input label="房间号"  value="{{_roomNo}}" bindlinblur="addRoomNo" disabled/> -->
+      <_calendar label="有效期至" placeholder="有效期截止" value="{{expiredIn}}" binddate="addExpiredIn" />
+
+      <view class="margin center">
+        <l-button bg-color="#97a97c" bindtap="add">新增</l-button>
+      </view>
+    </l-tabpanel>
+  </l-tabs>
+</view>

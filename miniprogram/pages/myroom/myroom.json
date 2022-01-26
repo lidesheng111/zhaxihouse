@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "_roommates": "../../components/_roommates/_roommates",
+    "_priceList": "../../components/_priceList/_priceList",
+    "monthlyBills": "../../components/monthlyBills/monthlyBills"
+  }
+}

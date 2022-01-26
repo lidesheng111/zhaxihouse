@@ -1,0 +1,28 @@
+<view class="margin flex_column_center">
+  <image src="../../src/images/smallhouse.png" style="width: 200rpx;height: 200rpx;margin-top: 100rpx;"></image>
+  <view style="margin: 50rpx 0;color: #4c956c;">吉祥小屋 如意拉萨</view>
+
+  <image class=avatar" src="{{user.userInfo.avatarUrl}}" mode="aspectFill" />
+
+  <l-input class="margin_top" label="姓名" value="{{user.userInfo.name}}" bindlinblur="inputName" placeholder="必填" required />
+  <l-input label="电话" value="{{user.userInfo.tel}}" bindtap="tap" disabled placeholder="必填" required />
+
+
+  <view class="margin">
+    <l-button bind:lintap="submit" bg-color="#4c956c">是也</l-button>
+  </view>
+
+  <page-container show="{{show}}" round>
+    <view wx:if="{{user.userInfo.avatarUrl==='../../src/images/avatar.png'}}" class="margin center">
+      <view class="description_content margin">为了更好的显示效果，请授权使用微信头像</view>
+      <l-button bg-color="#97a97c" bindtap="getAvatar">微信头像授权</l-button>
+    </view>
+
+    <view wx:else class="margin center">
+      <view class="description_content">请授权获取您的联系方式哦</view>
+      <view class="margin">
+        <l-button open-type="getPhoneNumber" bindgetphonenumber="getTel" bg-color="#97a97c">附上联系方式</l-button>
+      </view>
+    </view>
+  </page-container>
+</view>

@@ -1,0 +1,70 @@
+<view class="bg_gray">
+	<view class="tenants_box flex_row_between">
+		<image class=avatar" src="{{avatarUrl}}" mode="aspectFill"/>
+		<view style="margin-left: 50rpx;color: #fff;font-size: 30rpx;">
+			<view style="font-size: 44rpx;">{{room.roomNo}}房间</view>
+			<view>{{room.lessee[0].name}} <text style="font-size: 28rpx;">等{{room.numberOfPeople}}人在住</text></view>
+			<view>{{room.lessee[0].tel}}</view>
+			<view>在{{room.workat}}上班</view>
+		</view>
+		<image src="../../src/images/light.png" style="width: 200rpx;height: 200rpx;"></image>
+	</view>
+
+
+	<!-- 室友管理 -->
+	<_roommates who="{{room.roomMates}}" level="{{level}}" />
+
+	<!-- 显示/管理价格 -->
+	<_priceList room="{{room}}" />
+
+
+	<!-- 暂住证管理 -->
+	<view class="gap box">
+		<view class="box_title">暂住证信息</view>
+		<view wx:if="{{room.permits.length===0}}" class="margin center description_content">尽快办理暂住证！</view>
+		<view class="margin_top">
+			<block wx:for="{{room.permits[0].permits}}" wx:key="index">
+				<l-list title="{{item.name}}" desc="{{item.idNumber}}" tag-color="#f77f00" tag-content="{{permitsReminder}}" right-desc="{{'有效期：'+item.expiredIn}}" data-index="{{index}}" is-link="{{false}}" />
+			</block>
+		</view>
+	</view>
+
+	<!-- 合同管理 -->
+	<!-- to do:  leaseWarning 初始化-->
+	<view class="gap box">
+		<l-list title="合同起始" right-desc="{{room.checkinDate}}" is-link="{{false}}"></l-list>
+		<l-list title="合同截止" desc="续租或退房，务必提前与房东沟通" tag-color="{{diffDaysContract<0?'#d62828':''}}"  tag-content="{{leaseWarning}}" tag-color="{{_diffDaysContract<0?'#d62828':''}}" right-desc="{{room.termEndDate}}" is-link="{{false}}"></l-list>
+	</view>
+
+	<view class="gap box ">
+		<l-list title="押金金额" desc="已付：{{room.depositInfo.havePaid}}元" tag-content="逾期费{{room.depositInfo.depositLateFees}}元" right-desc="{{room.depositInfo.deposit}}元" is-link="{{false}}" />
+
+		<view wx:if="{{!room.depositInfo.allPaid}}" class="flex_around margin_top">
+			<view>
+				<view class="flex_row_center">
+					<_icon icon_name="rmb" size="50" color="#2c6e49" />
+					<input type="number" placeholder="共计{{depositToPay}}元" placeholder-style="padding-left:30rpx" class="input" bindinput="customizeAmount" />
+				</view>
+			</view>
+			<l-button size="mini" bg-color="#97a97c" bindtap="payDeposit">支付</l-button>
+		</view>
+	</view>
+
+	<!-- 账单显示 -->
+	<view class="gap box">
+		<view class="box_title">租费记录</view>
+		<monthlyBills bills="{{room.monthlyBills}}" />
+	</view>
+
+	<!-- 水电表管理 -->
+	<view class="gap box">
+		<view class="box_title">水电记录</view>
+		<e-w eReadings="{{room.eReadings}}" useWaterMeter="{{room.useWaterMeter}}" wReadings="{{details.wReadings ?details.wReadings : []}}" />
+	</view>
+
+	<page-container show="{{isOverdued}}" round="true">
+		<view class="overdued margin">
+			<view>您有逾期未支付的房租，已产生逾期费，请尽快支付，否则房东有权按违约处理</view>
+		</view>
+	</page-container>
+</view>

@@ -1,0 +1,8 @@
+
+.cell_date {
+  flex-basis: 100rpx;
+}
+
+.cell_content {
+  flex-basis: 50%;
+}

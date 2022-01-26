@@ -1,0 +1,117 @@
+<wxs src="./permitWarning.wxs" module="showWarning"></wxs>
+
+<view class="bg_gray">
+  <view class="tenants_box">
+    <view class="flex_row_between">
+      <view >
+        <view style="font-size: 44rpx;">{{details.roomNo}}房间</view>
+        <view>{{details.lessee[0].name}} <text style="font-size: 28rpx;">等{{details.numberOfPeople}}人在住</text></view>
+        <view>{{details.lessee[0].tel}}</view>
+        <view>在{{details.workat}}上班</view>
+      </view>
+
+      <view class="flex_column_center">
+        <view class="button"><l-button size="mini" bind:lintap="showRoomPicker" bg-color="#97a97c">换房</l-button></view>
+        <view class="button"><l-button size="mini" bindlintap="checkoutAll" bg-color="#97a97c">预退房</l-button></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 室友管理 -->
+  <_roommates who="{{details.roomMates}}" level="{{level}}" showMask="{{showMask}}" bind:update="TRPObtained" bind:submit="submitMates" bind:index="matesIndex" bind:leave="checkout">
+    <l-input label="电话" placeholder="{{details.roomMates[_roommatesIndex].tel}}" bind:linblur="roomatesTel" />
+    <l-input label="工作地址" placeholder="{{details.roomMates[_roommatesIndex].theyworkat}}" bind:linblur="roomatesWork" />
+  </_roommates>
+
+  <!-- 显示/管理价格 -->
+  <_priceList room="{{details}}" bind:input="getPrices" bind:submit="submit" level="{{level}}"/>
+
+  <!-- 押金管理 -->
+  <view class="gap box">
+    
+    <l-list title="押金金额" desc="{{details.depositInfo.allPaid?'支付完成':'已付'+details.depositInfo.havePaid+'元'}}" tag-content="{{details.depositInfo.allPaid ? '' : '逾期费'+details.depositInfo.depositLateFees+'元'}}" right-desc="{{details.depositInfo.deposit}}元" is-link="{{false}}"/>
+    <view wx:if="{{!details.depositInfo.allPaid}}" class="center margin_top">
+      <l-button bg-color="#97a97c" size="mini" bindtap="depositPaidOffline">已线下支付全部押金</l-button>
+    </view>
+  </view>
+   
+
+  <!-- 暂住证管理 -->
+  <view class="gap box">
+    <view class="box_title">暂住证信息</view>
+    <view wx:if="{{details.permits[0].permits.length === 0 && level===1 || level===2}}" class="margin_top" bindtap="addNew">
+      <_icon icon_name="jia" color="#97a97c" size="30" text="管理暂住证" />
+    </view>
+
+    <view class="margin_top">
+      <block wx:for="{{details.permits[0].permits}}" wx:key="index">
+        <l-list title="{{item.name}}" desc="{{item.idNumber}}" tag-color="#f77f00" tag-content="{{showWarning.warn(item.expiredIn)}}" right-desc="{{'有效期：'+item.expiredIn}}" data-index="{{index}}" is-link="{{level===1 || level===2}}" bindtap="{{level===1 || level===2?'toResiPermitsInfo':''}}" />
+      </block>
+    </view>
+  </view>
+
+  <!-- 合同管理 -->
+  <view class="gap box">
+    <l-list title="合同起始" right-desc="{{details.checkinDate}}" is-link="{{false}}" />
+    <l-list title="合同截止" desc="点击可更改" tag-content="{{leaseWarning}}" tag-color="{{diffDaysContract<0?'#d62828':''}}" right-desc="{{details.termEndDate}}" bindtap="showLeaseMask" is-link="{{false}}" />
+    <radio-group class="radio-box" bindchange="contract">
+      <radio value="true" color="#2c6e49" checked="{{details.contractSigned}}" />已签纸质合同
+      <radio value="false" color="#2c6e49" checked="{{!details.contractSigned}}" />未签纸质合同
+    </radio-group>
+    <!-- mask蒙版 -->
+    <_mask show="{{_showLeaseMask}}" center="{{true}}" bindclose="closeLeaseMask" bindsubmit="submitLease">
+      <l-input label="新租期截止" placeholder="{{details.termEndDate}}" bindlinblur="newLeaseEndDate" />
+    </_mask>
+  </view>
+
+  <!-- 账单显示 -->
+  <view class="gap box">
+    <view class="box_title">租费记录</view>
+    <monthlyBills bills="{{details.monthlyBills}}" />
+  </view>
+
+  <!-- 创建账单 -->
+  <view class="gap box">
+    <view class="box_title">创建月度账单</view>
+    <view>
+      <view class="margin_top flex_row_center center">
+        <_calendar placeholder="起始日期" value="{{from}}" bind:date="billFrom" />
+        <view class="description_content"> 至 </view>
+        <_calendar placeholder="起始日期" value="{{till}}" bind:date="billEnd" />
+      </view>
+
+      <view class="{{details.oPrice?'grid_fiveline':'grid_fourline'}}">
+        <view class="group_title">租金</view>
+        <view class="group_title">电费</view>
+        <view class="group_title">水费</view>
+        <view class="group_title">卫生费</view>
+        <view wx:if="{{details.oPrice}}" class="group_title">其他费用</view>
+        <input class="border" type="number" placeholder="{{rental+'元'}}" bindblur="rental" />
+        <input class="border" type="number" placeholder="电费" bindblur="eBill" />
+        <input class="border" type="number" placeholder="水费" bindblur="wBill" />
+        <input class="border" type="number" placeholder="{{gBill+'元'}}" bindblur="gBill" />
+        <input class="border" wx:if="{{details.oPrice}}" type="number" placeholder="其他" bindblur="oBill" />
+      </view>
+      <view class="center margin">
+        <l-button bg-color="#97a97c" catchtap="monthlyBill">创建账单</l-button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 水电表管理 -->
+  <view class="gap box">
+    <view class="box_title">水电记录</view>
+    <radio class="margin" color="#97a97c" checked="{{details.useWaterMeter}}" bindtap="radio">使用水表计费</radio>
+    <e-w eReadings="{{details.eReadings}}" useWaterMeter="{{details.useWaterMeter}}" wReadings="{{details.wReadings ?details.wReadings : []}}" bind:fetch="getMeterReading" />
+  </view>
+</view>
+
+<page-container show="{{showRoomPicker}}" round style="text-align: center;">
+  <view style="padding: 32rpx;">
+    <l-input label="新房号" bindlinblur="inputNewRoom"/>
+    <l-input label="楼层" bindlinblur="inputNewFloor"/>
+    <view style="margin: 32rpx 0;">
+      <l-button size="mini" bg-color="#97a97c" bindlintap="confirmNewRoom">确定</l-button>
+    </view>
+  </view>
+</page-container>

@@ -1,0 +1,14 @@
+<view class="gap box">
+  <view wx:if="{{!ifExtends}}">
+    <block wx:for="{{prices}}" wx:key="index">
+      <l-list title="{{item.name}}" desc="{{editable ? '点击可设置/修改' : ''}}" right-desc="{{room[item.key]+item.unit}}" bindtap="{{level===1? 'showMask' : ''}}" id="{{index}}" is-link="{{false}}" />
+    </block>
+  </view>
+
+  <!-- mask蒙版 -->
+  <block wx:for="{{prices}}" wx:key="index">
+    <_mask show="{{item.show}}" index="{{index}}" key="{{item.key}}" bindclose="closeMask" bindsubmit="submit">
+      <l-input label="{{item.name}}" bindlinblur="inputPrices" />
+    </_mask>
+  </block>
+</view>

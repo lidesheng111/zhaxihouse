@@ -1,0 +1,19 @@
+
+.grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr 2fr;
+  grid-template-rows: 100rpx;
+  text-align: center;
+  font-size: 22rpx;
+  border-bottom: 2rpx solid #fff;
+  line-height: 100rpx;
+}
+
+.dates-cell {
+  line-height: 30rpx;
+  align-self: center;
+}
+
+.faded {
+  opacity: 0.8;
+}

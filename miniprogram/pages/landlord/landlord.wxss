@@ -1,0 +1,11 @@
+
+.addApartment{
+  font-size: 24rpx;
+  color: #97a97c;
+  text-align: center;
+}
+
+.collapse-title{
+  /* width: 640rpx; */
+  color: #F4516c;
+}

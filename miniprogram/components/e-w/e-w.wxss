@@ -1,0 +1,14 @@
+/* 表格 */
+.flex_row{
+  font-size: 22rpx;
+  display: flex;
+
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #fff;
+  justify-content: space-around;
+  
+}
+
+.meter {
+  flex: 1
+}

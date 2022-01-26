@@ -1,0 +1,119 @@
+@import "./src/iconfont/iconfont.wxss";
+@import "./src/style/tabel_title_text.wxss";
+@import "./src/style/layout.wxss";
+/* 
+主色：#2c6e49
+次主色：#97a97c
+最浅灰色：#f8f9fa
+danger: #d62828
+*/
+
+
+  /* {
+    "pagePath": "pages/checkin/checkin",
+      "text": "办理入住",
+      "iconPath": "/src/images/tabBar/ruzhu.png",
+      "selectedIconPath": "/src/images/tabBar/ruzhuSel.png"
+  }, */
+
+.normal_fontsize{
+  font-size: 30rpx;
+}
+
+.bg_gray{
+  background-color: #f8f9fa;
+}
+.bg_white{
+  background-color: #fff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+} 
+
+.textarea{
+  font-size: 26rpx;
+  background-color: #f8f9fa; 
+  padding: 20rpx;
+  margin:20rpx 0;
+  height: 150rpx
+}
+
+.tenants_box{
+  background-color: #2c6e49;
+  color: #fff;
+  padding: 32rpx;
+}
+.avatar{
+  width: 130rpx;
+  height: 130rpx; 
+  border: 2px solid #fff;
+  overflow:hidden;
+  border-radius:50%;
+  box-shadow:3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* slide */
+.slide_right_box {
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+}
+.slide_danger{
+  display: inline-block;
+  padding: 0 16rpx;
+  background-color: #e76f51;
+}
+.slide_edit{
+  display: inline-block;
+  padding: 0 16rpx;
+  background-color: #f4a261;
+}
+.slide_update {
+  display: inline-block;
+  padding: 0 16rpx;
+  background-color: #e9c46a;
+}
+
+/* 确认按钮 */
+.B-nameTel {
+  font-size: 28rpx;
+  background-color: #f79e02;
+  color: white;
+  width: 100rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  margin: 20rpx auto;
+  align-self: center;
+}
+.warn{
+  color: red !important
+}
+
+.input{
+  background-color: #f8f9fa;
+  width: 200rpx; 
+  margin-left:30rpx;
+}
+
+/* 表格：支出 与 收入 */
+.head{
+  padding: 16rpx 0;
+}
+.content{
+  height: 60rpx;
+  font-size: 24rpx;
+}
+.date{
+  color: #2c6e49;
+}
+
+.back_img{
+  opacity: 0.8;
+}

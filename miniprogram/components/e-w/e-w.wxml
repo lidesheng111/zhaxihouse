@@ -1,0 +1,44 @@
+<view class="flex_row">
+  <view class="meter">
+    <view class="table_head_color flex_row">
+      <view>电表读数</view>
+      <view>抄录日期</view>
+    </view>
+    <view class="table_content_color">
+      <block wx:for="{{eReadings}}" wx:key="index">
+        <view class="flex_row">
+          <view>{{item.value}}度</view>
+          <view>{{item.date}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view wx:if="{{useWaterMeter}}" class="meter">
+    <view class="table_head_color flex_row">
+      <view>水表读数</view>
+      <view>抄录日期</view>
+    </view>
+
+    <view class="table_content_color">
+      <block wx:for="{{wReadings}}" wx:key="index">
+        <view class="flex_row">
+          <view>{{item.value}}吨</view>
+          <view>{{item.date}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{level===1||level===2}}">
+  <view class="flex_row">
+    <l-input label="电表" type="number" placeholder="新增电表记录" bind:linblur="inputE" />
+    <l-button size="mini" bg-color="#97a97c" bind:lintap="submitE">提交</l-button>
+  </view>
+
+  <view wx:if="{{useWaterMeter}}" class="flex_row">
+    <l-input label="水表" type="number" placeholder="新增水表记录" bind:linblur="inputW" />
+    <l-button size="mini" bg-color="#97a97c" bind:lintap="submitW">提交</l-button>
+  </view>
+</view>

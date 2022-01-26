@@ -1,0 +1,7 @@
+var abs =function (deposit) {
+  return Math.abs(deposit)
+}
+
+module.exports = {
+  abs:abs
+}

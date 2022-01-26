@@ -1,0 +1,30 @@
+<wxs src="../../src/wxs/switchTabs.wxs" module="switch"></wxs>
+
+<view>
+  <l-segment bind:linchange="changeTabs" active-key="{{_floor}}" active-color="#2c6e49">
+    <block wx:for="{{_apartment}}" wx:key="index">
+      <l-segment-item tab="{{index+1}}楼" key="{{index}}"></l-segment-item>
+    </block>
+  </l-segment>
+</view>
+
+<view style="margin: 32rpx;" bindtouchstart="{{switch.handleStart}}" bindtouchend="{{switch.handleEnd}}">
+  <view class="description_content table-content" wx:for="{{_apartment[_floor]}}" wx:key="index">
+    <!-- 
+      三元嵌套表达式。
+      contractSigned===false：
+        A.为真，说明=>房间不为空，但未签合同。
+        B.为假，有两种情况：
+          1.房间已签合同，contractSigned和termEndDate都为true 
+          2.房间是空房，contractSigned和termEndDate都是undefined => 嵌套三元运算，以处理termEndDate的显示-->
+    <l-list 
+    title="{{item.roomNo}}" 
+    desc="{{item.contractSigned===false ? '待签合同！' : item.termEndDate ? item.termEndDate+'到期' : ''}}" 
+    tag-color="#d62828" 
+    tag-content="{{item.isOverdued?'欠租':''}}" 
+    right-desc="{{item.payDay?item.payDay+'号交租':'空房'}}" 
+    id="{{item._id}}" 
+    url="{{item._id?'/pages/roomdetails/roomdetails?id='+item._id:''}}" 
+    is-link="{{item._id}}"/>
+  </view>
+</view>

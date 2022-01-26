@@ -1,0 +1,77 @@
+<l-tabs active-key="{{activeKey}}" bind:linchange="tabchange" active-color="#2c6e49">
+  <!-- 月度支出 -->
+  <l-tabpanel tab="月度支出" key="0" slot="0">
+    <!-- 选择：年-月 -->
+    <view class="center margin">
+      <picker mode="date" fields="month" value="{{curYear+'-'+curMonth}}" bindchange="yearMonth">
+        <view class="group_title">
+          <_icon icon_name="xiala" color="#97a97c" />{{curYear+'-'+curMonth}}
+        </view>
+      </picker>
+    </view>
+
+    <!-- 表格 -->
+    <view class="center">
+      <view class="table_head_color flex_around head">
+        <view class="cell_date">日期</view>
+        <view class="cell_content">用途</view>
+        <view class="cell_content">金额</view>
+      </view>
+
+      <view>
+        <view class="flex_around content" wx:for="{{monthly}}" wx:key="index">
+          <view class="date cell_date">{{item.day}}号</view>
+          <view class="cell_content">{{item.spendedon}}</view>
+          <view class="cell_content">{{item.howmuch}}</view>
+        </view>
+      </view>
+
+      <view wx:if="{{monthly.length > 0}}" class="margin table_content_out">
+        <view>本月共支出：{{monthlyTotal}}元</view>
+      </view>
+      <view wx:else class="description_content margin">太好了，没有支出哦！</view>
+    </view>
+  </l-tabpanel>
+
+  <!-- 年度支出 -->
+  <l-tabpanel tab="年度支出" key="1" slot="1">
+    <view class="center margin">
+      <picker mode="date" fields="year" value="{{curYear}}" bindchange="year">
+        <view class="group_title">
+          <_icon icon_name="xiala" color="#97a97c" />{{curYear}}
+        </view>
+      </picker>
+    </view>
+
+    <!-- 表格 -->
+    <view class="center">
+      <view class="table_head_color flex_around head">
+        <view>月份</view>
+        <view>金额</view>
+      </view>
+
+      <view>
+        <view class="flex_around content" wx:for="{{yearly}}" wx:key="index">
+          <view class="date">{{item._id}}</view>
+          <view>{{item.total}}</view>
+        </view>
+      </view>
+
+      <view wx:if="{{yearly.length > 0}}" class="margin table_content_out">
+        <view>本年度共支出：{{yearlyTotal}}元</view>
+      </view>
+      <view wx:else class="description_content margin">太好了，没有支出哦！</view>
+    </view>
+  </l-tabpanel>
+
+  <!-- 记一笔 -->
+  <l-tabpanel tab="记一笔" key="2" slot="2">
+    <view>
+      <l-input label="用途" bindlinblur="spendedon"></l-input>
+      <l-input type="number" label="金额" bindlinblur="howmuch"></l-input>
+      <view class="center margin_top">
+        <l-button bg-color="#2c6e49" bindtap="submit">记一笔</l-button>
+      </view>
+    </view>
+  </l-tabpanel>
+</l-tabs>

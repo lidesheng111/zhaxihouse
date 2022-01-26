@@ -1,0 +1,29 @@
+
+var touchStartX
+
+function handleStart( event ) {
+  touchStartX = event.changedTouches[0].clientX
+}
+
+function handleEnd( event, ownerInstance) {
+  var touchEndX = event.changedTouches[0].clientX
+  var distance = touchEndX - touchStartX //负数：向左，正数：向右
+
+  // direction -1：后退（左） 0：不动  1：前进（右）
+  var direction = 0
+
+  if( distance < -70 ) { // 左滑是前进
+    direction = 1
+  } else if ( distance > 70) {  // 右滑是后退
+    direction = -1
+  }
+  if( direction !== 0 ){
+    ownerInstance.callMethod( 'onTouchMove', { direction: direction })
+  }
+
+}
+
+module.exports = {
+  handleStart: handleStart,
+  handleEnd: handleEnd
+}

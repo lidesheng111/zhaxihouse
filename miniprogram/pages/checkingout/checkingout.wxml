@@ -1,0 +1,63 @@
+<wxs src="./math.wxs" module="math"></wxs>
+
+<view>
+  <l-tabs active-key="{{activeKey}}" active-color="#2c6e49">
+    <l-tabpanel wx:if="{{level===1 || level === 2}}" tab="房间列表" key="0" slot="0">
+      <view class="margin" wx:if="{{list.length > 0}}">
+        <block wx:for="{{list}}" wx:key="index">
+          <l-slide-view height="80" width="710" slide-width="200">
+            <view slot="left">
+              <l-list 
+              title="{{item.lessee[0].name}}" 
+              desc="{{item.checkinDate}}入住" 
+              tag-content="{{item.roomNo}}房间" 
+              right-desc="{{item.rental}}元/月" 
+              is-link="{{false}}" 
+              data-i="{{index}}"
+              bindtap="choose"/>
+            </view>
+
+            <view slot="right" class="slide_right_box">
+              <navigator class="slide_edit" bindtap="check" url="/pages/roomdetails/roomdetails?id={{item._id}}">房间详情</navigator>
+            </view>
+          </l-slide-view>
+
+        </block>
+      </view>
+
+      <view wx:else class="margin center">
+        <view class="description_content">没有退房的啦！</view>
+      </view>
+    </l-tabpanel>
+
+    <l-tabpanel tab="退房进度" key="1" slot="1">
+      <view class="margin">
+        <view class="center">
+          <l-input label="房间" placeholder="{{roomNo}}房" disabled />
+          <l-input label="押金" placeholder="{{deposit}}元" disabled />
+          <l-input label="欠费" placeholder="{{totalArrears}}元" disabled />
+          <l-input label="押金减扣" placeholder="{{depositDocked}}元" bindlinblur="depositDocked" disabled="{{level===3||level===4}}"/>
+          <l-input label="{{depositLeft>=0?'押金剩余':'租户补交'}}" placeholder="{{math.abs(depositLeft)}}元" disabled />
+        </view>
+        <checkbox-group bindchange="checkboxChange">
+          <label class="" wx:for="{{todos}}" wx:key="index">
+            <view class="margin_top">
+              <checkbox color="#2c6e49" value="{{index}}" checked="{{item.checked}}"> 
+                <text style="margin-left: 64rpx;">{{item.name}}</text> 
+              </checkbox>
+            </view>
+          </label>
+        </checkbox-group>
+
+        <view class="margin">
+          <l-progress percent="{{todosPercent}}" show-info="{{true}}" active-color="#2c6e49" text-color='#97a97c'/>
+        </view>
+
+        <view wx:if="{{todosPercent===100}}" class="margin center">
+          <l-button bg-color="#2c6e49" bindtap="completelyCheckout">完成退房</l-button>
+        </view>
+      </view>
+    </l-tabpanel>
+  </l-tabs>
+
+</view>

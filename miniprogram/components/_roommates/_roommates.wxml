@@ -1,0 +1,23 @@
+<view class="bg_white padding">
+  <block wx:for="{{who}}" wx:key="index">
+    <!-- level >= 3 无权限编辑 -->
+    <l-slide-view wx:if="{{level < 3}}" height="80" width="710" slide-width="{{who[index].TRPObtained?'200':'350'}}">
+      <view slot="left">
+        <l-list title="{{item.name}}" desc="{{item.tel}}" tag-content="{{item.TRPObtained?'已办暂住证':'待办暂住证'}}" tag-color="{{item.TRPObtained?'#97a97c':'#f77f00'}}" right-desc="{{item.staying?item.theyworkat:'已退房'}}" is-link="{{false}}" />
+      </view>
+      <view slot="right" class="slide_right_box">
+        <view wx:if="{{!who[index].TRPObtained}}" class="slide_update" data-index="{{index}}" bindtap="TRPObtained">已办证</view>
+        <view class="slide_edit" data-index="{{index}}" bindtap="edit">修改</view>
+        <view class="slide_danger" data-index="{{index}}" bindtap="checkout">离开</view>
+      </view>
+    </l-slide-view>
+
+    <view wx:else>
+      <l-list title="{{item.name}}" desc="{{item.tel}}" tag-content="{{item.TRPObtained?'已办暂住证':'待办暂住证'}}" tag-color="{{item.TRPObtained?'#97a97c':'#f77f00'}}" right-desc="{{item.staying?item.theyworkat:'已退房'}}" is-link="{{false}}" />
+    </view>
+  </block>
+  <_mask show="{{showMask}}" bindclose="closeMaskRM" bindsubmit="submitRM">
+    <!-- 房东或者公寓管理员会用到此插槽 -->
+    <slot></slot> 
+  </_mask>
+</view>

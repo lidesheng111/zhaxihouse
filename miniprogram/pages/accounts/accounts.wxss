@@ -1,0 +1,14 @@
+
+
+.cell_large {
+  flex-basis: 120rpx
+}
+.cell {
+  flex-basis: 90rpx;
+}
+.cell_s{
+  flex-basis: 80rpx;
+}
+.cell_mini{
+  flex-basis: 30rpx;
+}

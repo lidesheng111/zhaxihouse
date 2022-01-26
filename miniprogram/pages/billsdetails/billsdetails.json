@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "账单详情",
+  "usingComponents": {
+    "_tip": "../../components/_tip/_tip"
+  }
+}

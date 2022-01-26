@@ -1,0 +1,21 @@
+.addOrDelete{
+  font-size: 28rpx;
+  display: flex;
+  justify-content: space-between;
+  color: #a4ac86;
+  margin: 32rpx;
+}
+/* 原色为#f79e02 */
+.radios {
+  text-align: left;
+  margin: 20rpx;
+  font-size: 32rpx;
+  color: #97a97c;
+}
+
+/* .mask{
+  position: absolute;
+  width: 100%;
+  top: 0;
+  background: #fff;
+} */

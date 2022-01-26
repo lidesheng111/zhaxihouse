@@ -1,0 +1,74 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/checkin/checkin",
+    "pages/myroom/myroom",
+    "pages/login/index",
+    "pages/myspace/myspace",
+    "pages/addapartment/addapartment",
+    "pages/landlord/landlord",
+    "pages/accounts/accounts",
+    "pages/outlay/outlay",
+    "pages/roomlist/roomlist",
+    "pages/roomdetails/roomdetails",
+    "pages/billsdetails/billsdetails",
+    "pages/resiPermitsInfo/resiPermitsInfo",
+    "pages/approving/approving",
+    "pages/checkingout/checkingout"
+  ],
+  "window": {
+    "backgroundColor": "#97a97c",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2c6e49",
+    "navigationBarTitleText": "吉祥小屋公寓助手",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#2c2c2c",
+    "selectedColor": "#2c6e49",
+     "list": [
+     {
+       "pagePath": "pages/index/index",
+       "text": "首页",
+       "iconPath": "/src/images/tabBar/main.png",
+       "selectedIconPath": "/src/images/tabBar/mainSel.png"
+     },
+    
+     {
+       "pagePath": "pages/myspace/myspace",
+       "text": "我的",
+       "iconPath": "/src/images/tabBar/myspace.png",
+       "selectedIconPath": "/src/images/tabBar/myspaceSel.png"
+     }
+     ]
+  },
+  "usingComponents": {
+    "_icon": "./components/_icon/_icon",
+    "_picker": "./components/_picker/_picker",
+    "l-calendar": "./miniprogram_npm/lin-ui/calendar/index",
+    "_calendar": "./components/_calendar/index",
+    "l-input": "./miniprogram_npm/lin-ui/input/index",
+    "l-button": "./miniprogram_npm/lin-ui/button/index",
+    "l-toast": "./miniprogram_npm/lin-ui/toast/index",
+    "l-radio-group": "./miniprogram_npm/lin-ui/radio-group/index",
+    "l-radio": "./miniprogram_npm/lin-ui/radio/index",
+    "l-search-bar" : "./miniprogram_npm/lin-ui/search-bar/index",
+    "l-list": "./miniprogram_npm/lin-ui/list/index",
+    "l-mask": "./miniprogram_npm/lin-ui/mask/index",
+    "l-badge": "./miniprogram_npm/lin-ui/badge/index",
+    "l-collapse": "./miniprogram_npm/lin-ui/collapse/index",
+    "l-collapse-item": "./miniprogram_npm/lin-ui/collapse-item/index",
+    "l-segment": "./miniprogram_npm/lin-ui/segment/index",
+    "l-segment-item": "./miniprogram_npm/lin-ui/segment-item/index",
+    "l-tabs": "./miniprogram_npm/lin-ui/tabs/index",
+    "l-tabpanel": "./miniprogram_npm/lin-ui/tabpanel/index",
+    "l-slide-view": "./miniprogram_npm/lin-ui/slide-view/index",
+    "_mask": "./components/_mask/_mask",
+    "e-w": "./components/e-w/e-w",
+    "l-grid": "./miniprogram_npm/lin-ui/grid/index",
+    "l-grid-item": "./miniprogram_npm/lin-ui/grid-item/index"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
+}

@@ -1,0 +1,74 @@
+<view style="margin-bottom: 200rpx;">
+
+  <view class="grid-1-1">
+    <view style="background-color: #2c6e49;color: #fff;">
+      <view class="cell">月度</view>
+      <view class="cell">房租</view>
+      <view class="cell">电费</view>
+      <view class="cell">水费</view>
+      <view class="cell">卫生费</view>
+      <view class="cell">其他费用</view>
+      <view class="cell">合计</view>
+      <view class="cell">逾期费</view>
+      <view class="cell">已付</view>
+      <view class="cell">待付（拖欠）</view>
+      <view class="cell">状态</view>
+    </view>
+    <view class="periodsBills-box">
+      <view class="content-right">{{from}} 至 {{till}}</view>
+      <view class="content-right">{{rental}} 元</view>
+      <view class="content-right">{{eBill}} 元</view>
+      <view class="content-right">{{wBill}} 元</view>
+      <view class="content-right">{{gBill}} 元</view>
+      <view class="content-right">{{oBill}} 元</view>
+      <view class="content-right">{{total}} 元</view>
+      <view class="content-right {{allPaid?'':'warn'}}">{{latePaymentFees}} 元</view>
+      <view class="content-right">{{havePaid}} 元</view>
+      <view class="content-right {{allPaid?'':'warn'}}">{{arrears}} 元</view>
+      <view class="content-right {{allPaid?'':'warn'}}">{{allPaid?'已结清':'欠租'}}</view>
+    </view>
+  </view>
+
+  <_tip text="合计 + 逾期费 - 已付 = 待付（拖欠）" />
+
+
+
+  <view wx:if="{{level===1 && arrears > 0}}">
+    <view style="margin-top: 100rpx;" class="center">
+      <l-button class="margin" bg-color="#97a97c" bindtap="showOfflineMask">租户已线下支付</l-button>
+      <l-button class="margin" bg-color="#97a97c" bindtap="remindLessees">提醒租户交租</l-button>
+    </view>
+    <_mask show="{{_showMaskOffline}}" bindclose="closeMaskOffline" bindsubmit="submitOffline">
+      <_tip text="提醒：如果住户已在线下当面或通过其他渠道给您付款，可继续此操作" />
+      <l-input label="已付金额" placeholder="租户线下已支付的金额" bindlinblur="customizeAmount" />
+    </_mask>
+  </view>
+
+
+  <view wx:if="{{paymentRecords.lenth !== 0}}">
+    <view class="box_title margin">支付记录</view>
+    <view class="table_head_color grid-1-1-1">
+      <view>付款人</view>
+      <view>金额</view>
+      <view>日期</view>
+    </view>
+    <view class="description_content" wx:for="{{paymentRecords}}" wx:key="index">
+      <view class="grid-1-1-1">
+        <view>{{item.paidBy}}</view>
+        <view>{{item.amount}}</view>
+        <view>{{item.time}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{ arrears > 0 && level===3||level===4 }}" class="pay-box bg_white">
+  <view>
+    <view class="description_content" style="margin:16rpx">付款金额</view>
+    <view class="flex_row_center">
+      <_icon icon_name="rmb" size="50" color="#2c6e49" />
+      <input type="number" placeholder="{{arrears}}" placeholder-style="padding-left:30rpx" class="input" bindinput="customizeAmount" />
+    </view>
+  </view>
+  <l-button bg-color="#a4ac86" size="medium" bindtap="payRental">交房租</l-button>
+</view>

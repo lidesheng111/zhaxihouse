@@ -1,0 +1,2 @@
+
+<text class="iconfont icon-{{icon_name}}" style="color: {{color}}; font-size: {{size}}rpx;"> {{text}}</text>

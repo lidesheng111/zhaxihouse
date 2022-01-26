@@ -1,0 +1,48 @@
+<view style="font-size: 28rpx;">
+    <view>
+      <view class="center margin">
+        <picker mode="date" fields="year" value="{{year}}" start="{{year-10}}" end="{{year}}" bindchange="year">
+          <view class="group_title">
+            <_icon icon_name="xiala" color="#97a97c"/>{{year}} 年
+          </view>
+        </picker>
+      </view>
+
+      <view class="table_head_color flex_around head">
+        <view class="cell_mini">月份</view>
+        <view class="cell_large">房租</view>
+        <view class="cell">电费</view>
+        <view class="cell_s">水费</view>
+        <view class="cell_s">卫生费</view>
+        <view class="cell_s">其他费用</view>
+        <view class="cell_s">逾期罚款</view>
+        <view class="cell_large">合计</view>
+      </view> 
+
+      <view >
+        <view class="flex_around content" wx:for="{{yearlyAccounts}}" wx:key="index">
+          <view class="cell_mini date">{{item.month}}</view>
+          <view class="cell_large description_content">{{item.rentalBills}}</view>
+          <view class="cell description_content">{{item.eBills}}</view>
+          <view class="cell_s description_content">{{item.wBills}}</view>
+          <view class="cell_s description_content">{{item.gBills}}</view>
+          <view class="cell_s description_content">{{item.oBills}}</view>
+          <view class="cell_s description_content">{{item.punishmentBills}}</view>
+          <view class="cell_large">{{item.total}}</view>
+        </view>
+        <view wx:if="{{yearlyAccounts.length !== 0}}" class="flex_around content">
+          <view class="cell_mini date">汇总</view>
+          <view class="cell_large">{{rentalTotal}}</view>
+          <view class="cell">{{eTotal}}</view>
+          <view class="cell_s">{{wTotal}}</view>
+          <view class="cell_s">{{gTotal}}</view>
+          <view class="cell_s">{{oTotal}}</view>
+          <view class="cell_s">{{pTotal}}</view>
+          <view class="cell_large">{{totality}}</view>
+        </view>
+        <view wx:else>
+          <view class="description_content margin center">无数据，请选择其他年份......</view>
+        </view>
+      </view>
+    </view>
+  </view>

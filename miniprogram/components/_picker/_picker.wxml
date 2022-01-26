@@ -1,0 +1,9 @@
+<picker class="form-item" mode="{{mode}}" range="{{range}}" bindchange="change">
+  <view class="{{noline ? '' : 'row'}}" style="width: nullrpx;"></view>
+  <view style="display: flex;align-items: center;">
+    <view class="form-label form-label-left">{{label}}</view>
+    <view class="input">{{value}}
+      <_icon icon_name="xiala" size="30" />
+    </view>
+  </view>
+</picker>

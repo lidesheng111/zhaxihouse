@@ -1,0 +1,33 @@
+.in-out-box{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #f8f9fa;
+  text-align: center;
+  color: #8a8a8a;
+  font-size: 30rpx;
+ }
+ .active{
+  background-color: #2c6e49;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #fff;
+ } 
+ .table-head{
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
+ }
+
+ .roomsBox{
+  /* display: flex; */
+  height: 80rpx;
+  line-height: 80rpx;
+  /* width: 100%; */
+  border-bottom: 1rpx solid #f8f9fa;
+ }
+ .occupied{
+   display: grid;
+   grid-template-columns: 1fr 2fr 2fr 1fr;
+  /* color: red; */
+ }

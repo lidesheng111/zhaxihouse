@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Tencent\微信web开发者工具\cli.bat" cloud functions deploy --e test1009 --n quickstartFunctions --r --project "C:\Users\1234\WeChatProjects\zhaxihouse" --report_first && "C:\Program Files (x86)\Tencent\微信web开发者工具\cli.bat" cloud functions deploy --e rent-6gritc2gc2f51bb9 --n quickstartFunctions --r --project "C:\Users\1234\WeChatProjects\zhaxihouse" --report

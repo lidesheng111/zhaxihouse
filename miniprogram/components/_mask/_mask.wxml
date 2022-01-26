@@ -1,0 +1,9 @@
+<l-mask show="{{show}}" center="{{true}}">
+  <view class="bg_white mask padding">
+    <slot></slot>
+    <view class="center margin">
+      <l-button class="margin" bg-color="#97a97c" bindtap="submit">提交</l-button>
+      <l-button class="margin" bg-color="#97a97c" bindtap="cancel">取消</l-button>
+    </view>
+  </view>
+</l-mask>

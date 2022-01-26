@@ -1,0 +1,18 @@
+<view class="margin">
+  <block wx:for="{{list}}" wx:key="index">
+    <l-slide-view wx:if="{{!item.valid}}"  height="80" width="710" slide-width="200">
+      <view slot="left">
+        <l-list title="{{item.lessee[0].name}}" desc="{{item.checkinDate}}入住" tag-content="{{item.roomNo}}房间" right-desc="{{item.rental}}元/月"/>
+      </view>
+
+      <view slot="right" class="slide_right_box">
+        <view class="slide_update" id="{{item._id}}" data-i="{{index}}" bindtap="approved">确认</view>
+        <navigator class="slide_edit" bindtap="check" url="/pages/roomdetails/roomdetails?id={{item._id}}">查看</navigator>
+      </view>
+    </l-slide-view>
+  </block>
+
+  <view class="margin center" wx:if="{{list.length === 0}}">
+    <view class="description_content">没有新入住的啦！</view>
+  </view>
+</view>

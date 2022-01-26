@@ -1,0 +1,66 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/checkin/checkin",
+          "pathName": "pages/checkin/checkin",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/addapartment/addapartment",
+          "pathName": "pages/addapartment/addapartment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/myroom/myroom",
+          "pathName": "pages/myroom/myroom",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/landlord/landlord",
+          "pathName": "pages/landlord/landlord",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/roomdetails/roomdetails",
+          "pathName": "pages/roomdetails/roomdetails",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/accounts/accounts",
+          "query": "id=bf4a0bf261cc439301568e0777cfec83",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/outlay/outlay",
+          "query": "id=bf4a0bf261cc439301568e0777cfec83",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/checkingout/checkingout",
+          "query": "id=bf4a0bf261cc439301568e0777cfec83",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

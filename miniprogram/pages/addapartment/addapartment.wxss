@@ -1,0 +1,15 @@
+.room_item_box{
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.room_item {
+  background-color: #f8f9fa;
+  padding:5rpx 10rpx; 
+  margin: 10rpx;
+}
+
+.facilities_item{
+  width: 300rpx;
+}

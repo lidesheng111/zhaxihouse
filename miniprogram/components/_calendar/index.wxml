@@ -1,0 +1,3 @@
+<l-input label="{{label}}" hide-label="{{label.length==0}}" placeholder="{{placeholder}}" value="{{value}}" disabled bindtap="click" />
+
+<l-calendar show="{{ show }}" min-date="{{minDate}}" default-date="{{today}}" color="#97a97c" bind:linconfirm="confirmInDate"/>

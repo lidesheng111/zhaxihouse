@@ -1,0 +1,153 @@
+
+.mask{
+  width: 700rpx;
+}
+
+.grid_fourline{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 80rpx;
+  align-items: center;
+  text-align: center;
+}
+
+.grid_fiveline{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 80rpx;
+  align-items: center;
+  text-align: center;
+}
+
+.border{
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.button{
+  margin: 16rpx;
+ }
+ 
+ .tip{
+  color: #fff;
+  text-align: center;
+  margin-top: 300rpx;
+  font-size: 36rpx;
+ }
+ .call{
+  background-color: #7ac997;
+  color: #fff;
+  height: 70rpx;
+  line-height: 70rpx;
+  width: 200rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  margin: 20rpx auto;
+ }
+ /* image {
+  width: 100%;
+ } */
+ 
+ .change-b{
+  color: #feedec;
+  font-size: 20rpx;
+  background-color: #f6928d;
+  margin-left: 20rpx;
+  height: 28rpx;
+  width: 48rpx;
+  line-height: 28rpx;
+  padding: 6rpx 10rpx;
+  border-radius: 10rpx;
+ }
+ 
+ /*.date-info{
+  margin-top: 100rpx;
+  color: #7ac997;
+  background-color: #fff;
+  width: 500rpx;
+  text-align: center;
+  padding: 20rpx 0;
+  border-radius: 50rpx;
+ }*/
+ 
+ 
+ .roomNo-box {
+  background-color: #fff;
+  text-align: center;
+  /* height: 100rpx;
+  line-height: 100rpx; */
+  font-size: 36rpx;
+  padding: 20rpx 0;
+  font-weight: bolder;
+  color: #555;
+ }
+ 
+ /* .general {
+  background-color: #fff;
+  margin-top: 32rpx;
+  padding: 32rpx;
+ 
+ } */
+ 
+ /* .tenants-box {
+  background-color: #fff;
+  
+ } */
+ /* .box-title{
+  font-size: 36rpx;
+  color: #555;
+  margin: 0 auto 30rpx;
+  text-align: center;
+  width: 200rpx;
+  border-bottom: 30rpx solid#b7e3e4;
+ } */
+ .names-box {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  justify-content: space-around;
+  grid-row-gap: 15rpx;
+ }
+ .names {
+  width: 200rpx;
+  background-color: #fee1ae;
+  padding: 10rpx;
+  border-radius: 10rpx;
+ }
+ 
+ .info{
+  text-align: center;
+ }
+ .rent-status{
+  background-color: #7ac997;
+  color: red;
+  font-size: 32rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 20rpx 0 40rpx 0;
+ }
+ .rent-info{
+  color: #555;
+  margin-top: 20rpx;
+ }
+ 
+ .radio-group-box{
+  display: flex;
+ }
+ .radio-box{
+   margin-top: 32rpx;
+  font-size: 34rpx;
+  text-align: center;
+ }
+ 
+ 
+ 
+ /* .e-or-w-box{
+  display: grid;
+  grid-template-columns: 50% 50%;
+ } */
+ 
+ /* 发送账单 */
+ /* .start-end-box{
+  display: grid;
+  grid-template-columns: 50% 50%;
+ } */
+ 

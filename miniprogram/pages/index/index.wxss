@@ -1,0 +1,7 @@
+.service_title{
+  font-family: 'motionpicture';
+  color: rgba(0, 0, 0, 0.8);
+}
+.chinses{
+  letter-spacing: 8rpx;
+}

@@ -1,0 +1,24 @@
+<view>
+  <view class="back_img">
+    <image src="cloud://rent-6gritc2gc2f51bb9.7265-rent-6gritc2gc2f51bb9-1256857292/梦岛公寓/dreamisland.jpg" mode="aspectFill" style="width: 100%; height: 400rpx;" />
+  </view>
+
+  <view class="margin center">
+    <view class="service_title box_title">Our Services</view>
+    <view class="table_content_out chinses">我们的服务</view>
+    <view class="description_content">tel: 18108916914</view>
+  </view>
+  <l-grid l-class="grid" row-num="4" show-border="{{true}}">
+    <l-grid-item wx:for="{{main.functions}}" wx:key="index" key="{{index}}" slot="{{index}}" bindtap="{{item.func}}">
+      <_icon icon_name="{{item.icon}}" size="40" color="#97a97c" />
+      <view class="description_content">{{item.text}}</view>
+    </l-grid-item>
+  </l-grid>
+</view>
+
+<!-- <page-container show="{{user.avatarUrl==='../../src/images/avatar.png'}}" round="true">
+  <view class="margin center">
+    <view class="description_content margin">为了更好的显示效果，请授权使用微信头像</view>
+    <l-button bg-color="#97a97c" bindtap="getAvatar">微信头像授权</l-button>
+  </view>
+</page-container> -->

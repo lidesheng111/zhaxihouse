@@ -1,0 +1,4 @@
+<view class="margin bg_white" style="font-size:20rpx">
+  <_icon icon_name="question" />
+  <text class="description_content">{{text}}</text>
+</view>

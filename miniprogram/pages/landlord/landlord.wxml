@@ -1,0 +1,97 @@
+<view class="bg_gray normal_fontsize">
+
+  <view class="tenants_box flex_row_between">
+    <image class=avatar" src="{{avatarUrl}}" mode="aspectFill"/>
+    <view>
+      <view style="font-size: 44rpx;">
+        <text>{{am.apartmentName}} </text>
+        <_icon wx:if="{{myApartments.length > 1}}" icon_name="switches" text="切换公寓" color="#97a97c" size="24" bindtap="onSwitchMyApart" />
+      </view>
+      <view>{{am.address}}</view>
+      <view>{{am.registeringDay}} 注册</view>
+    </view>
+    <view class="addApartment" bindtap="addApartment">
+      <_icon icon_name="jia" color="#97a97c" size="50" />
+      <view>添加公寓</view>
+    </view>
+  </view>
+
+  <view class="box">
+    <l-list title="所有房间" id="{{am._id}}" bindtap="gotoRoomlist" right-desc="管理"/>
+    <l-list wx:if="{{level===1}}" title="公寓收入" right-desc="看看账"  url="/pages/accounts/accounts?id={{am._id}}"/>
+    <l-list title="公寓支出" right-desc="记一笔"  url="/pages/outlay/outlay?id={{am._id}}"/>
+    <!-- <l-list title="违约黑名单" desc="合同违约租户" right-desc="上传"  url="/pages/blacklist/blacklist"/> -->
+    <l-list title="公寓押金总计" right-desc="{{am.totalDeposit}}元"  is-link="{{false}}"/>
+    <l-list title="新住审核" right-desc="审核" url="/pages/approving/approving?id={{am._id}}"/>
+    <l-list title="操作退房" right-desc="退房" url="/pages/checkingout/checkingout?id={{am._id}}"/>
+  
+    <!-- <view class="l-list" style="padding-top: 20rpx;">
+      <l-badge value="2">
+        <l-collapse>
+          <l-collapse-item title="今日已缴费" l-class="collapse-title"> -->
+            <!-- 注意：如果此处不设置固定宽度，l-list会坍缩。【且此处有改动lin-ui组件badge源码：left:70% 变为 26%】 -->
+            <!-- <view style="width: 640rpx;">
+              <l-list title="102" desc="扎西次仁" tag-content="欠费1000元" tag-position="right"></l-list>
+            </view>
+            <view style="width: 640rpx;">
+              <l-list title="302" desc="索朗拉姆" tag-content="欠费2000元" tag-position="right"></l-list>
+            </view>
+          </l-collapse-item>
+        </l-collapse>
+      </l-badge>
+    </view> -->
+  </view>
+
+  <view wx:if="{{level===1}}" class="gap box">
+    <view class="box_title">本月汇总</view>
+      <view class="table_content padding">
+        <view>房租：{{rentalBills}}元</view>
+        <view>电费：{{eBills}}元</view>
+        <view>水费：{{wBills}}元</view>
+        <view>卫生费：{{gBills}}元</view>
+        <view>租户违约费：{{punishmentBills}}元</view>
+        <view>其他费费：{{oBills}}元</view>
+        <view class="table_content_out margin_top">总计：{{total}}元</view>
+      </view>
+  </view>
+
+  <!-- <view class="gap box">
+    <view class="box-title">
+      <view class="box_title">欠费黑名单</view>
+      <icon class="iconfont icon-questionfill" style="color: #97a97c;" bindtap="onShowBlacklistTip"></icon>
+    </view>
+    <view>
+      <l-collapse>
+        <l-collapse-item title="欠费：在住">
+          <l-list title="102" desc="扎西次仁" tag-content="欠费1000元" tag-position="right"></l-list>
+          <l-list title="302" desc="索朗拉姆" tag-content="欠费2000元" tag-position="right"></l-list>
+        </l-collapse-item>
+      </l-collapse>
+      <l-collapse>
+        <l-collapse-item title="欠费：已退房">
+          <l-list title="102" desc="扎西次仁" tag-content="欠费1000元" tag-position="right"></l-list>
+          <l-list title="302" desc="索朗拉姆" tag-content="欠费2000元" tag-position="right"></l-list>
+        </l-collapse-item>
+      </l-collapse>
+    </view>
+  </view> -->
+
+  <view wx:if="{{permitsExpiring.length > 0}}" class="gap box">
+    <view class="box_title">暂住证过期提醒</view>
+    <view wx:for="{{permitsExpiring}}" wx:key="index">
+      <l-list title="{{item.roomNo}}房间" url="/pages/roomdetails/roomdetails?id={{item.roomId}}"/>
+    </view>
+  </view>
+
+  <page-container show="{{show}}" round custom-style="text-align:center;">
+    <view wx:if="{{showApartList}}" style="padding: 32rpx;color: #97a97c;">
+      <block wx:for="{{myApartments}}" wx:key="index">
+        <l-list title="{{item.name}}" bindtap="onSelectMyApart" id="{{item.id}}"></l-list>
+      </block>
+    </view>
+
+    <view wx:else style="padding:32rpx;" class="description-content">
+      用于查看，经多次催缴，仍以各种借口推脱延迟交付房租的房间。分为‘在住’和‘已退房’两栏。避免经营损失，建议管理员或房东及时按照合同，处理在住的恶意欠租人员。对于已退房的逃租人员，建议用法律手段维护权益，同时上传该人信息至后台。
+    </view>
+  </page-container>
+</view>

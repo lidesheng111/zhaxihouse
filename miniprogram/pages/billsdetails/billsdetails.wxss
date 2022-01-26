@@ -1,0 +1,42 @@
+.grid-1-1{
+  display: grid;
+  grid-template-columns: 30% 70%;
+  font-size: 30rpx;
+  text-align: center;
+ }
+
+.grid-1-1-1{
+  display: grid;
+  grid-template-columns: 30% 20% 50%;
+  grid-template-rows: 50rpx;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 50rpx;
+}
+ .cell{
+   border-bottom: 2rpx solid #b7e3e4;
+   height: 70rpx;
+   line-height: 70rpx; 
+ }
+ .content-right{
+  background-color: #fff;
+  height: 70rpx;
+  line-height: 70rpx; 
+  color: #2c6e49;
+  border-bottom: 2rpx solid #f8f9fa;
+ }
+
+ .pay-box{
+  padding: 20rpx 50rpx 50rpx;
+  width: 100%;
+  border-top: 2rpx solid #f8f9fa; 
+  display: flex;
+  align-items: center;
+  justify-content: space-around; 
+  position: fixed;
+  bottom: 0;
+  box-shadow:3px 0 10px rgba(0, 0, 0, 0.05)
+}
+.half{
+ opacity: 0.5;
+}

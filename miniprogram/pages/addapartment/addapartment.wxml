@@ -1,0 +1,97 @@
+<view class="bg_gray">
+  <view class="bg_white">
+    <l-input label="名称" value="{{apartmentName}}" placeholder="公寓名称" bindlinblur="apartmentName" />
+    <l-input label="地址" value="{{address}}" placeholder="公寓地址" bindlinblur="address" />
+    <l-input label="商户号" value="{{subMchId}}" placeholder="微信支付商户号" bindlinblur="subMchId" />
+  </view>
+
+  <view class="gap box">
+    <view class="box-title">经营详情</view>
+    <view class="flex_row_center" style="text-align: center;font-size: 28rpx;">
+      <view style="flex:1">房租区间</view>
+      <l-input style="flex:1" value="{{lowestPrice}}" hide-label placeholder="最低价格" bindlinblur="lowestPrice" />
+      <view style="flex:1"> 至 </view>
+      <l-input style="flex:1" value="{{highestPrice}}" hide-label placeholder="最高价格" bindlinblur="highestPrice" />
+    </view>
+    <l-input label="电费价格" type="digit" value="{{ePrice}}" bindlinblur="eprice">
+      <view slot="right">元/度</view>
+    </l-input>
+    <l-input label="水费价格" type="digit" value="{{wPrice}}" placeholder="每吨x元，或每人每月x元" bindlinblur="wprice">
+      <view slot="right">元</view>
+    </l-input>
+    <l-input label="卫生费价格" type="digit" value="{{gPrice}}" placeholder="每个房间每月x元" bindlinblur="gprice">
+      <view slot="right">元/月</view>
+    </l-input>
+    <l-input label="房租宽限期" type="number" value="{{graceDays}}" placeholder="可延迟缴纳房租的天数" bindlinblur="gracedays">
+      <view slot="right">天</view>
+    </l-input>
+    <l-input label="房租逾期费" type="number" value="{{latePrice}}" placeholder="若房租逾期，每天的逾期费" bindlinblur="lateprice">
+      <view slot="right">元/天</view>
+    </l-input>
+    <view class="margin flex_twoline">
+      <l-radio-group wx:for="{{manageInfo}}" wx:key="index" bind:linchange="manageInfo">
+        <l-radio class="facilities_item" key="{{item.name}}">{{item.name}}</l-radio>
+      </l-radio-group>
+    </view>
+    <l-input wx:if="{{_apartmentRented}}" label="年租金" value="{{yearlyRental?yearlyRental+'万元/年':''}}" placeholder="公寓每年租金金额/万" bindlinblur="yearlyRental" />
+    <l-input wx:if="{{_collectRentsAtFixedDay}}" label="固定收租日" value="{{theFixedDay?theFixedDay+'号':''}}" placeholder="设置每月固定收租日期" bindlinblur="theFixedDay" />
+  </view>
+
+  <view class="gap box">
+    <view class="box-title">公寓房型</view>
+    <view class="margin flex_twoline">
+      <l-radio-group wx:for="{{roomTypes}}" wx:key="index" bind:linchange="roomTypes">
+        <l-radio class="facilities_item" key="{{item.name}}">{{item.name}}</l-radio>
+      </l-radio-group>
+    </view>
+  </view>
+
+  <view class="gap box">
+    <view class="box-title">公寓详情</view>
+    <view class="margin flex_twoline">
+      <l-radio-group wx:for="{{facilities}}" wx:key="index" bind:linchange="facilities">
+        <l-radio class="facilities_item" key="{{item.name}}">{{item.name}}</l-radio>
+      </l-radio-group>
+    </view>
+  </view>
+
+  <!-- 添加的房间号 -->
+  <view class="gap box">
+    <view class="box-title">添加房间号</view>
+    <l-input label="房间数" value="{{numberOfRooms}}" placeholder="公寓房间总数" bindlinblur="numberOfRooms" />
+    <view class="margin" wx:for="{{roomNumbers}}" wx:key="index">
+      <view>
+        <view class="flex_row_center">
+          <view style="margin-right: 50rpx;">{{index+1}}楼</view>
+          <l-button wx:if="{{_index-1 != index}}" size="mini" bg-color="#97a97c" bindtap="tapEdit" id="{{index}}">修改</l-button>
+        </view>
+
+        <view class="room_item_box">
+          <block wx:for="{{item}}" wx:key="index" wx:for-item="room">
+            <text class="room_item">{{room}}</text>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <!-- 当楼层数大于0 且 非edit状态 -->
+    <view style="display: inline;" class="margin" wx:if="{{roomNumbers.length > 0 && !_editRooms}}" bindtap="deleteFloor">
+      <_icon icon_name="jian" color="#97a97c" size="30" text=" 删除楼层" />
+    </view>
+
+    <!-- 楼层输入框 -->
+    <view class="margin">
+      <view class="center">{{_index}}楼</view>
+      <view class="textarea">
+        <textarea bindblur="inputRooms" value="{{_roomsTemp}}" placeholder="房间号之间用逗号隔开：101，102，103" auto-height maxlength="500" />
+      </view>
+    </view>
+    <view wx:if="{{_confirmBtnShow}}" class="center margin">
+      <l-button bg-color="#97a97c" bindtap="confirmRooms">确定</l-button>
+    </view>
+  </view>
+
+  <view class="margin center">
+    <l-button size="large" bg-color="#2c6e49" bindtap="submit">注册</l-button>
+  </view>
+</view>

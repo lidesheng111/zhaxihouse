@@ -1,0 +1,60 @@
+<view class="center">
+	<view class="box-title margin">入住登记</view>
+
+	<l-mask show="{{_show}}" opacity="0.7" center="{{false}}">
+		<view style="background-color: #fff;width: 750rpx;padding:32rpx 0">
+			<view style="margin-top: 32rpx;">
+				<l-search-bar  placeholder="搜索公寓名" shape="circle" bg-color="#f6f6f6" bind:linconfirm="search" bind:lincancel="cancel" />
+			</view>
+			<view class="margin" wx:for="{{_apartments}}" wx:key="index">
+				<l-list title="{{item.apartmentName}}" desc="{{item.address}}" tag-content="房东：{{item.landlord[0].name}}" is-link="{{false}}" bindlintap="choose" id="{{index}}" />
+			</view>
+		</view>
+	</l-mask>
+
+	<view bindtap="goto">
+		<l-input label="公寓名" type="number" placeholder="租住的公寓名称" value="{{apartmentName}}" bindtap="apartmentName" disabled />
+	</view>
+
+	<view wx:if="{{apartmentName}}">
+		<_picker label="楼层" range="{{_floors}}" value="{{floor||'选择'}}" bind:picker="getFloor" />
+		<_picker label="房间号" range="{{_allRooms[floor-1]}}" value="{{roomNo||'选择'}}" bind:picker="getRoomNo" />
+	</view>
+
+	<!-- <l-input label="租期" type="number" placeholder="租几个月" bindlinblur="leaseTerm" /> -->
+	<l-input label="租金" type="number" placeholder="租金" bindlinblur="rental" />
+	<l-input label="押金" type="number" placeholder="押金金额" bindlinblur="deposit" />
+	<_calendar label="入住日期" placeholder="点击选择" value="{{checkinDate}}" bind:date="checkinDate" />
+	<_calendar label="合同签到" placeholder="点击选择" value="{{termEndDate}}" bind:date="termEndDate" />
+	<_calendar label="房租交到" placeholder="点击选择" value="{{paidTill}}" bind:date="paidTill" />
+	<l-input label="电表度数" type="digit" placeholder="入住度数" bindlinblur="emeterReading" />
+	<l-input label="工作单位" placeholder="上班的店/公司名称" bindlininput="workat" />
+	<l-input label="入住人数" type="number" placeholder="入住人数" bindlinblur="numberOfPeople" />
+	<view style="background-color: #f8f9fa;">
+		<block wx:for="{{roomMates}}" wx:key="index">
+			<l-input label="室友 {{index+1}}" id="{{index}}" placeholder="室友姓名" bind:linblur="mates" />
+			<l-input label="电话" id="{{index}}" type="number" placeholder="室友电话" bind:linblur="tel" />
+			<l-input label="工作单位" id="{{index}}" placeholder="上班的店/公司名称" bindlinblur="theyworkat" />
+		</block>
+	</view>
+
+	<view class="addOrDelete">
+		<_icon wx:if="{{numberOfPeople>1}}" icon_name="jia" size="30" text="添加室友" bindtap="addRoomMates" />
+
+		<view wx:if="{{roomMates.length > 0}}" bindtap="delete">
+			<_icon icon_name="jian" size="30" text="删除" />
+		</view>
+	</view>
+
+	<radio-group class="radios" bindchange="contractSigned">
+		<view wx:for="{{contractInfo}}" wx:key="index">
+			<radio color="#2c6e49" value="{{item.value}}"></radio>
+			<label for="{{item.text}}"><text>{{item.text}}</text></label>
+		</view>
+	</radio-group>
+
+	<view class="margin">
+		<l-button bg-color="#2c6e49" bindtap="submit">提交</l-button>
+	</view>
+
+</view>
